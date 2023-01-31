@@ -1,5 +1,6 @@
 exports.erc20Balance = require("./erc20-balance.js")
 exports.erc20TotalSupply = require("./erc20-total-supply.js")
+exports.erc20MaxSupply = require("./erc20-max-supply.js")
 exports.erc20Allowance = require("./erc20-allowance.js")
 exports.erc20Approve = require("./erc20-approve.js")
 exports.erc20Decimals = require("./erc20-decimals.js")

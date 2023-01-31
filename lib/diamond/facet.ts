@@ -3,17 +3,33 @@ const { get, getSelector, getSelectors, FacetCutAction } = require('./diamond.ts
 const zeroAddress = '0x0000000000000000000000000000000000000000'
 const _gasLimit = 10000000
 
-const deployFacets = async (diamondAddress, CutAction, FacetNames) =>  {
+const deployFacets = async (diamondAddress_, cutAction_, facets_) =>  {
   const accounts = await ethers.getSigners()
-  const facets = []
-  for (const FacetName of FacetNames) {
-    console.log(FacetName)
-    const Facet = await ethers.getContractFactory(FacetName);
-    const facet = await Facet.deploy()
-    await facet.deployed();
-    facets.push(facet);
+  const _facets = []
+  for (const facet_ of facets_) {
+    console.log(Facet.name)
+    const Factory = await ethers.getContractFactory(facet_.name);
+    let _facet 
+    if(facet_.args){
+      // NOTE: Will definitely bork if the signer is ever the first param cuz 0
+      let signerKey = Object.keys(facet_.args).find(key => facet_.args[key] === '<signer>');
+      let args = []
+      if(signerKey){
+        let Args = facet_.args        
+        Args[signerKey] = accounts[0].address
+        args = Args
+      }else{
+        args = facet_.args
+      }
+      _facet = await Factory.deploy(...args)
+    }else{
+      _facet = await Factory.deploy()
+    }    
+    await _facet.deployed();
+    console.log(_facet.address)
+    _facets.push(_facet);
   }
-  return cutFacets(diamondAddress,CutAction,facets)
+  return cutFacets(diamondAddress_,cutAction_,_facets)
 }
 
 const removeFacets = async (diamondAddress, FacetNames) =>  {

@@ -5,4 +5,6 @@ export * as facets from "./facets";
 export * as interfaces from "./interfaces";
 export * as libraries from "./libraries";
 export * as upgradeInitializers from "./upgradeInitializers";
+export { DEIT__factory } from "./DEIT__factory";
+export { DEITBroker__factory } from "./DEITBroker__factory";
 export { Diamond__factory } from "./Diamond__factory";

@@ -1,7 +1,7 @@
 const { getSelectors, FacetCutAction } = require('./diamond.ts')
 
 
-const deployDiamond = async () =>  {
+const deployDiamond = async (diamondContract) =>  {
   const accounts = await ethers.getSigners()
   const contractOwner = accounts[0]
 
@@ -12,7 +12,7 @@ const deployDiamond = async () =>  {
   console.log('DiamondCutFacet deployed:', diamondCutFacet.address)
 
   // deploy Diamond
-  const Diamond = await ethers.getContractFactory('Diamond')
+  const Diamond = await ethers.getContractFactory(diamondContract)
   const diamond = await Diamond.deploy(contractOwner.address, diamondCutFacet.address)
   await diamond.deployed()
   console.log('Diamond deployed:', diamond.address)

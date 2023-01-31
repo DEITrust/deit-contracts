@@ -1,0 +1,1 @@
+exports.diamondTest = require("./diamondTest")

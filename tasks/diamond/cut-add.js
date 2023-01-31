@@ -16,7 +16,7 @@ task("cut-add", "Adds a facet to a diamond")
     const facetContract = new ethers.Contract(taskArgs.facet, Facet.interface, signer)
     const facets = [facetContract]
 
-    await facetLib.cutFacets(contractAddr,diamondLib.FacetCutAction.Add,facets);
+    await facetLib.cutFacets(contractAddr,diamondLib.FacetCutAction.Add,facets, {gasLimit: 40000000});
 
     if (["hardhat", "localhost", "ganache"].indexOf(network.name) >= 0) {
       console.log("You'll have to manually update the value since you're on a local chain!")

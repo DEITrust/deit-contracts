@@ -1,5 +1,12 @@
+const { ethers } = require("ethers")
+const { Diamond, Facet } = require("../lib/diamond/shinyblocks")
+
+const network = process.env.NETWORK
+const provider = ethers.getDefaultProvider(network)
+
 exports.diamond = require("./diamond")
-exports.test = require("./test")
+exports.tests = require("./tests")
+exports.broker = require("./broker")
 exports.erc20 = require("./erc20")
 exports.erc721 = require("./erc721")
 exports.erc1155 = require("./erc1155")
