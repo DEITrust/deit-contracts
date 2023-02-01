@@ -46,6 +46,7 @@ export const Facet = async(hre_:{ethers:{}}, diamond_:{address:string}, facetNam
     const _signer = signer_ ? signer_ : await signer(hre_)
     let Factory 
     if(diamond_ && diamond_.address){
+        //@TODO: this is p grawss. try to think through a better solution
         try{
             Factory = await hre_.ethers.getContractFactory(facetName_)
             _instance = await new hre_.ethers.Contract(diamond_.address,Factory.interface, _signer)
@@ -90,7 +91,7 @@ const _cut = async function(cutAction_:number){
 }
 
 const _test = async function(){
-    //implement Test hook
+    //@TODO: implement Test hook
     return true
 }
 
@@ -125,7 +126,7 @@ export const Diamond = async(hre, diamondName_:string, address_ = false, signer_
     return _diamond
 }
 
-export const Facets = async(hre, diamond_, facetNames_, signer_ = false, action_ = false, initContract_ = false, initFunction_ = false, args_:[] = [] ) => {
+export const Facets = async(hre, diamond_, facetNames_, signer_ = false, action_ = false, initContract_ = false, initFunction_ = false, args_:{} = {} ) => {
     if(typeof facetNames_ == typeof {} && facetNames_.coreFacets){
         console.log ("Cutting core facets from "+facetNames_.address+" to "+diamond_.address)
         return await _shareCoreFacets(hre, diamond_, facetNames_.coreFacets, signer_, action_, initContract_, initFunction_, args_)
@@ -300,3 +301,6 @@ export const A = (address_:string) => {
 export const H = (ethers_) => {
     return {ethers:ethers_}
 }
+// need to decide whether I like this... kind of prefer contract, but also like using Facet errywhere... hmm
+export const Contract = Facet
+export const C = Contract

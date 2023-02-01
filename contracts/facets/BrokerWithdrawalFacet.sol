@@ -72,10 +72,4 @@ contract BrokerWithdrawalFacet is IBrokerWithdrawal, REGuard {
         );
     }
 
-    function liquify(address ) external view onlyOwner returns (bool){
-        require(false, "Not implemented yet. Assets pool here until LP support added.");
-        return true;
-    }
-
-
 }
