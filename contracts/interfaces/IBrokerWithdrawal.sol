@@ -24,8 +24,4 @@ interface IBrokerWithdrawal {
      */
     function limit() external returns (uint256, uint256);
 
-    /**
-     * @dev This function liquifies the ETH/token to a compliant liquidity pool
-     */
-    function liquify(address lpContract_) external returns (bool);
 }

@@ -31,16 +31,11 @@ export interface IBrokerWithdrawalInterface extends utils.Interface {
   functions: {
     "limit(uint256,uint256)": FunctionFragment;
     "limit()": FunctionFragment;
-    "liquify(address)": FunctionFragment;
     "withdraw(address,uint256,bool)": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic:
-      | "limit(uint256,uint256)"
-      | "limit()"
-      | "liquify"
-      | "withdraw"
+    nameOrSignatureOrTopic: "limit(uint256,uint256)" | "limit()" | "withdraw"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -48,10 +43,6 @@ export interface IBrokerWithdrawalInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(functionFragment: "limit()", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "liquify",
-    values: [PromiseOrValue<string>]
-  ): string;
   encodeFunctionData(
     functionFragment: "withdraw",
     values: [
@@ -66,7 +57,6 @@ export interface IBrokerWithdrawalInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "limit()", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "liquify", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
 
   events: {
@@ -125,11 +115,6 @@ export interface IBrokerWithdrawal extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    liquify(
-      lpContract_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     withdraw(
       to_: PromiseOrValue<string>,
       amount_: PromiseOrValue<BigNumberish>,
@@ -148,11 +133,6 @@ export interface IBrokerWithdrawal extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  liquify(
-    lpContract_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   withdraw(
     to_: PromiseOrValue<string>,
     amount_: PromiseOrValue<BigNumberish>,
@@ -168,11 +148,6 @@ export interface IBrokerWithdrawal extends BaseContract {
     ): Promise<boolean>;
 
     "limit()"(overrides?: CallOverrides): Promise<[BigNumber, BigNumber]>;
-
-    liquify(
-      lpContract_: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
 
     withdraw(
       to_: PromiseOrValue<string>,
@@ -206,11 +181,6 @@ export interface IBrokerWithdrawal extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    liquify(
-      lpContract_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     withdraw(
       to_: PromiseOrValue<string>,
       amount_: PromiseOrValue<BigNumberish>,
@@ -227,11 +197,6 @@ export interface IBrokerWithdrawal extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     "limit()"(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    liquify(
-      lpContract_: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

@@ -81,25 +81,6 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
-        name: "lpContract_",
-        type: "address",
-      },
-    ],
-    name: "liquify",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
         name: "to_",
         type: "address",
       },

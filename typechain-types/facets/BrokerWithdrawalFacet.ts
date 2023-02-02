@@ -32,7 +32,6 @@ export interface BrokerWithdrawalFacetInterface extends utils.Interface {
     "brokerWithdrawInit(uint256,uint256)": FunctionFragment;
     "limit(uint256,uint256)": FunctionFragment;
     "limit()": FunctionFragment;
-    "liquify(address)": FunctionFragment;
     "withdraw(address,uint256,bool)": FunctionFragment;
   };
 
@@ -41,7 +40,6 @@ export interface BrokerWithdrawalFacetInterface extends utils.Interface {
       | "brokerWithdrawInit"
       | "limit(uint256,uint256)"
       | "limit()"
-      | "liquify"
       | "withdraw"
   ): FunctionFragment;
 
@@ -54,10 +52,6 @@ export interface BrokerWithdrawalFacetInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(functionFragment: "limit()", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "liquify",
-    values: [PromiseOrValue<string>]
-  ): string;
   encodeFunctionData(
     functionFragment: "withdraw",
     values: [
@@ -76,7 +70,6 @@ export interface BrokerWithdrawalFacetInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "limit()", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "liquify", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
 
   events: {
@@ -139,11 +132,6 @@ export interface BrokerWithdrawalFacet extends BaseContract {
 
     "limit()"(overrides?: CallOverrides): Promise<[BigNumber, BigNumber]>;
 
-    liquify(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
-
     withdraw(
       to_: PromiseOrValue<string>,
       amount_: PromiseOrValue<BigNumberish>,
@@ -166,11 +154,6 @@ export interface BrokerWithdrawalFacet extends BaseContract {
 
   "limit()"(overrides?: CallOverrides): Promise<[BigNumber, BigNumber]>;
 
-  liquify(
-    arg0: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
   withdraw(
     to_: PromiseOrValue<string>,
     amount_: PromiseOrValue<BigNumberish>,
@@ -192,11 +175,6 @@ export interface BrokerWithdrawalFacet extends BaseContract {
     ): Promise<boolean>;
 
     "limit()"(overrides?: CallOverrides): Promise<[BigNumber, BigNumber]>;
-
-    liquify(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
 
     withdraw(
       to_: PromiseOrValue<string>,
@@ -234,11 +212,6 @@ export interface BrokerWithdrawalFacet extends BaseContract {
 
     "limit()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    liquify(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     withdraw(
       to_: PromiseOrValue<string>,
       amount_: PromiseOrValue<BigNumberish>,
@@ -261,11 +234,6 @@ export interface BrokerWithdrawalFacet extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     "limit()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    liquify(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
 
     withdraw(
       to_: PromiseOrValue<string>,
